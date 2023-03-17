@@ -26,6 +26,20 @@ func lengthOfLastWord(s string) int {
 	return right - left
 }
 
+// 简短直观方法
+func lengthOfLastWord2(s string) int {
+	idx, count := len(s)-1, 0
+	for idx >= 0 {
+		if s[idx] != ' ' {
+			count++
+		} else if count > 0 {
+			break
+		}
+		idx--
+	}
+	return count
+}
+
 func Test_lengthOfLastWord(t *testing.T) {
 	s := "Hello World"
 	assert.Equal(t, 5, lengthOfLastWord(s))
@@ -35,4 +49,15 @@ func Test_lengthOfLastWord(t *testing.T) {
 
 	s = "luffy is still joyboy"
 	assert.Equal(t, 6, lengthOfLastWord(s))
+}
+
+func Test_lengthOfLastWord2(t *testing.T) {
+	s := "Hello World"
+	assert.Equal(t, 5, lengthOfLastWord2(s))
+
+	s = "   fly me   to   the moon  "
+	assert.Equal(t, 4, lengthOfLastWord2(s))
+
+	s = "luffy is still joyboy"
+	assert.Equal(t, 6, lengthOfLastWord2(s))
 }
