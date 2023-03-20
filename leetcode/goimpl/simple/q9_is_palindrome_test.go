@@ -26,30 +26,23 @@ import (
 // 输出：false
 // 解释：从右向左读, 为 01 。因此它不是一个回文数。
 
-// 空间复杂度O(N)，时间复杂度O(N)
+// 空间复杂度O(1)，时间复杂度O(N)
 func isPalindrome(x int) bool {
 	if x < 0 {
 		return false
+	} else if x < 10 {
+		return true
 	}
 
-	nums := make([]int, 0)
-	mod := 0
-	for x >= 10 {
-		mod = x % 10
-		nums = append(nums, mod)
-		x = x / 10
+	reverse, tmp := 0, x
+	for tmp >= 10 {
+		reverse = reverse*10 + tmp%10
+		tmp = tmp / 10
 	}
-	nums = append(nums, x)
-
-	i, j := 0, len(nums)-1
-	for i < len(nums)/2 {
-		if nums[i] != nums[j] {
-			return false
-		}
-		i++
-		j--
-	}
-	return true
+	// if tmp > 0 {
+	reverse = reverse*10 + tmp
+	// }
+	return reverse == x
 }
 
 // 空间复杂度O(1)，时间复杂度O(logN)
@@ -67,7 +60,7 @@ func isPalindrome2(x int) bool {
 }
 
 func Test_isPalindrome(t *testing.T) {
-	nums := []int{121, 1221, 1}
+	nums := []int{121, 1221, 1, 10001}
 	for _, n := range nums {
 		assert.True(t, isPalindrome(n))
 		assert.True(t, isPalindrome2(n))
