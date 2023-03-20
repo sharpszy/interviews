@@ -55,12 +55,37 @@ func longestCommonPrefix(strs []string) string {
 	return strs[idx][:minIdx]
 }
 
+// 将第一个元素座位基准，遍历剩余元素，直到查找到不相等字符为止
+// 时间复杂度O(N)，空间复杂度O(1)
+func longestCommonPrefix2(strs []string) string {
+	if len(strs) == 0 {
+		return ""
+	}
+
+	idx := 0
+outter:
+	for ; idx < len(strs[0]); idx++ {
+		for _, str := range strs {
+			if idx >= len(str) || str[idx] != strs[0][idx] {
+				break outter
+			}
+		}
+	}
+	return strs[0][:idx]
+}
+
 func Test_longestCommonPrefix(t *testing.T) {
 	var strs = []string{"flower", "flow", "flight"}
 	assert.Equal(t, "fl", longestCommonPrefix(strs))
+	assert.Equal(t, "fl", longestCommonPrefix2(strs))
+
+	strs = []string{"flower1", "flower23", "flower45", "flower789"}
+	assert.Equal(t, "flower", longestCommonPrefix(strs))
+	assert.Equal(t, "flower", longestCommonPrefix2(strs))
 
 	strs = []string{"dog", "racecar", "car"}
 	assert.Equal(t, "", longestCommonPrefix(strs))
+	assert.Equal(t, "", longestCommonPrefix2(strs))
 
 	s := "abc"
 	assert.Equal(t, "", s[:0])
