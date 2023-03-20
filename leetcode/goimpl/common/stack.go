@@ -32,3 +32,7 @@ func (s *Stack) Len() int {
 func (s *Stack) Cap() int {
 	return cap(*s)
 }
+
+func (s *Stack) IsEmpty() bool {
+	return s.Len() == 0
+}

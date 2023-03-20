@@ -48,7 +48,7 @@ func validParentheses(s string) bool {
 			}
 		}
 	}
-	return stack.Len() == 0
+	return stack.IsEmpty()
 }
 
 func Test_validParentheses(t *testing.T) {
