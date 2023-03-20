@@ -1,6 +1,7 @@
 package simple
 
 import (
+	"goimpl/common"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -35,17 +36,19 @@ func validParentheses(s string) bool {
 
 	pairs := map[byte]byte{'(': ')', '[': ']', '{': '}'}
 
-	stack := make([]byte, 0)
+	stack := common.NewStack()
 	for _, c := range []byte(s) {
 		if v, ok := pairs[c]; ok {
-			stack = append(stack, v)
-		} else if len(stack) > 0 && stack[len(stack)-1] == c {
-			stack = stack[:len(stack)-1]
+			stack.Push(v)
 		} else {
-			return false
+			if v, ok := stack.Pop(); ok && c == v {
+				continue
+			} else {
+				return false
+			}
 		}
 	}
-	return len(stack) == 0
+	return stack.Len() == 0
 }
 
 func Test_validParentheses(t *testing.T) {
