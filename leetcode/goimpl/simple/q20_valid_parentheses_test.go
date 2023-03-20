@@ -36,7 +36,7 @@ func validParentheses(s string) bool {
 
 	pairs := map[byte]byte{'(': ')', '[': ']', '{': '}'}
 
-	stack := common.NewStack()
+	stack := common.NewStack[byte]()
 	for _, c := range []byte(s) {
 		if v, ok := pairs[c]; ok {
 			stack.Push(v)

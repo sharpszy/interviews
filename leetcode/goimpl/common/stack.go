@@ -1,38 +1,37 @@
 package common
 
-type Stack []byte
+type Stack[T any] []T
 
-func NewStack(cap ...uint) *Stack {
+func NewStack[T any](cap ...uint) *(Stack[T]) {
 	size := 0
 	if len(cap) > 0 {
 		size = int(cap[0])
 	}
-	var s Stack = make([]byte, 0, size)
+	var s Stack[T] = make([]T, 0, size)
 	return &s
 }
 
-func (s *Stack) Pop() (byte, bool) {
-	l := s.Len()
-	if l == 0 {
-		return ' ', false
+func (s *Stack[T]) Pop() (v T, f bool) {
+	if s.IsEmpty() {
+		return v, false
 	}
-	v := (*s)[l-1]
-	*s = (*s)[:l-1]
+	v = (*s)[s.Len()-1]
+	*s = (*s)[:s.Len()-1]
 	return v, true
 }
 
-func (s *Stack) Push(n ...byte) {
+func (s *Stack[T]) Push(n ...T) {
 	*s = append(*s, n...)
 }
 
-func (s *Stack) Len() int {
+func (s *Stack[T]) Len() int {
 	return len(*s)
 }
 
-func (s *Stack) Cap() int {
+func (s *Stack[T]) Cap() int {
 	return cap(*s)
 }
 
-func (s *Stack) IsEmpty() bool {
+func (s *Stack[T]) IsEmpty() bool {
 	return s.Len() == 0
 }

@@ -19,26 +19,25 @@ func TestStack_Pop(t *testing.T) {
 
 	tests := []struct {
 		name string
-		s    *Stack
+		s    *Stack[byte]
 		args args
 		want want
 	}{
-		// TODO: Add test cases.
 		{
 			name: "empty",
-			s:    NewStack(0),
+			s:    NewStack[byte](0),
 			args: args{},
-			want: want{' ', false, 0, 0},
+			want: want{0, false, 0, 0},
 		},
 		{
 			name: "5 elements",
-			s:    NewStack(8),
+			s:    NewStack[byte](8),
 			args: args{[]byte{0, 1, 2, 3, 4}},
 			want: want{4, true, 4, 8},
 		},
 		{
 			name: "10 elements",
-			s:    NewStack(8),
+			s:    NewStack[byte](8),
 			args: args{[]byte{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}},
 			want: want{9, true, 9, 16},
 		},
@@ -61,20 +60,20 @@ func TestStack_Push(t *testing.T) {
 	}
 	tests := []struct {
 		name string
-		s    *Stack
+		s    *Stack[byte]
 		args args
 		want int
 	}{
 
 		{
 			name: "0 cap",
-			s:    NewStack(0),
+			s:    NewStack[byte](0),
 			args: args{[]byte{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}},
 			want: 16,
 		},
 		{
 			name: "8 cap",
-			s:    NewStack(8),
+			s:    NewStack[byte](8),
 			args: args{[]byte{0, 1, 2, 3, 4, 5}},
 			want: 8,
 		},
