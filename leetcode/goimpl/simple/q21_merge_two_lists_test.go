@@ -16,8 +16,8 @@ import (
 // 输出：[0]
 
 // 迭代，时间复杂度O(M + N)，空间复杂的O(1)
-func mergeTwoLists(list1 *common.ListNode, list2 *common.ListNode) *common.ListNode {
-	dumy := &common.ListNode{}
+func mergeTwoLists[T common.NodeType](list1 *common.ListNode[T], list2 *common.ListNode[T]) *common.ListNode[T] {
+	dumy := &common.ListNode[T]{}
 	p := dumy
 	for list1 != nil && list2 != nil {
 		if list1.Val < list2.Val {
@@ -39,7 +39,7 @@ func mergeTwoLists(list1 *common.ListNode, list2 *common.ListNode) *common.ListN
 }
 
 // 递归，时间复杂度O(M + N)，空间复杂的O(M + N)
-func mergeTwoLists2(list1 *common.ListNode, list2 *common.ListNode) *common.ListNode {
+func mergeTwoLists2[T common.NodeType](list1 *common.ListNode[T], list2 *common.ListNode[T]) *common.ListNode[T] {
 	if list1 == nil {
 		return list2
 	}

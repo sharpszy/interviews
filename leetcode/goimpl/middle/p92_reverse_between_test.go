@@ -13,8 +13,8 @@ import (
 // 输入：head = [1,2,3,4,5], left = 2, right = 4
 // 输出：[1,4,3,2,5]
 
-func reverseBetween(head *common.ListNode, left int, right int) *common.ListNode {
-	dummy := &common.ListNode{}
+func reverseBetween[T common.NodeType](head *common.ListNode[T], left int, right int) *common.ListNode[T] {
+	dummy := &common.ListNode[T]{}
 	dummy.Next = head
 	prev := dummy
 

@@ -20,15 +20,15 @@ import (
 // 输入：l1 = [0], l2 = [0]
 // 输出：[0]
 
-func addTwoNumbers(l1 *common.ListNode, l2 *common.ListNode) *common.ListNode {
+func addTwoNumbers[T common.NodeType](l1 *common.ListNode[T], l2 *common.ListNode[T]) *common.ListNode[T] {
 	var (
-		p, r *common.ListNode
+		p, r *common.ListNode[T]
 
-		carry = 0
-		sum   = 0
+		carry T = 0
+		sum   T = 0
 	)
 	for l1 != nil || l2 != nil {
-		n1, n2 := 0, 0
+		var n1, n2 T = 0, 0
 		if l1 != nil {
 			n1 = l1.Val
 			l1 = l1.Next
@@ -42,30 +42,30 @@ func addTwoNumbers(l1 *common.ListNode, l2 *common.ListNode) *common.ListNode {
 		sum = sum % 10
 
 		if r == nil {
-			r = &common.ListNode{Val: sum}
+			r = &common.ListNode[T]{Val: sum}
 			p = r
 		} else {
-			p.Next = &common.ListNode{Val: sum}
+			p.Next = &common.ListNode[T]{Val: sum}
 			p = p.Next
 		}
 	}
 
 	if carry > 0 {
-		p.Next = &common.ListNode{Val: carry}
+		p.Next = &common.ListNode[T]{Val: carry}
 	}
 	return r
 }
 
 func Test_addTwoNumbers(t *testing.T) {
 	var (
-		l1 = common.NewListNode([]int{1, 2, 3})
-		l2 = common.NewListNode([]int{4, 5, 8, 3})
+		l1 = common.NewListNode([]int64{1, 2, 3})
+		l2 = common.NewListNode([]int64{4, 5, 8, 3})
 	)
 	l := addTwoNumbers(l1, l2)
 	l.Print()
 
-	l1 = common.NewListNode([]int{9, 9, 9, 9, 9, 9, 9})
-	l2 = common.NewListNode([]int{9, 9, 9, 9})
-	l = addTwoNumbers(l1, l2)
-	l.Print()
+	l3 := common.NewListNode([]int{9, 9, 9, 9, 9, 9, 9})
+	l4 := common.NewListNode([]int{9, 9, 9, 9})
+	ll := addTwoNumbers(l3, l4)
+	ll.Print()
 }

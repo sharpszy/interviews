@@ -13,8 +13,8 @@ import (
 // 输入：head = [1,2,3,4,5]
 // 输出：[5,4,3,2,1]
 
-func reverseList(head *common.ListNode) *common.ListNode {
-	var prev *common.ListNode
+func reverseList[T common.NodeType](head *common.ListNode[T]) *common.ListNode[T] {
+	var prev *common.ListNode[T]
 	curr := head
 	for curr != nil {
 		next := curr.Next

@@ -1,29 +1,37 @@
 package common
 
-import "fmt"
+import (
+	"fmt"
 
-// Definition for singly-linked list.
-type ListNode struct {
-	Val  int
-	Next *ListNode
+	"golang.org/x/exp/constraints"
+)
+
+type NodeType interface {
+	constraints.Integer
 }
 
-func NewListNode(nums []int) *ListNode {
+// Definition for singly-linked list.
+type ListNode[T NodeType] struct {
+	Val  T
+	Next *ListNode[T]
+}
+
+func NewListNode[T NodeType](nums []T) *ListNode[T] {
 	if len(nums) == 0 {
 		return nil
 	}
 	var (
-		r = &ListNode{}
+		r = &ListNode[T]{}
 		p = r
 	)
 	for _, n := range nums {
-		p.Next = &ListNode{Val: n}
+		p.Next = &ListNode[T]{Val: n}
 		p = p.Next
 	}
 	return r.Next
 }
 
-func (l *ListNode) Print() {
+func (l *ListNode[T]) Print() {
 	if l == nil {
 		return
 	}
