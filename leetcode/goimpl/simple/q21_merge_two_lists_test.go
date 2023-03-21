@@ -3,6 +3,8 @@ package simple
 import (
 	"goimpl/common"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 // Q:21 合并两个有序链表
@@ -60,10 +62,10 @@ func Test_mergeTwoLists(t *testing.T) {
 	l1 := common.NewListNode([]int{1, 2, 3})
 	l2 := common.NewListNode([]int{1, 3, 4})
 	merge := mergeTwoLists(l1, l2)
-	merge.Print()
+	assert.Equal(t, "1 -> 1 -> 2 -> 3 -> 3 -> 4", merge.String())
 
 	l3 := common.NewListNode([]int{1, 2, 3})
 	l4 := common.NewListNode([]int{1, 3, 4})
 	merge2 := mergeTwoLists2(l3, l4)
-	merge2.Print()
+	assert.Equal(t, "1 -> 1 -> 2 -> 3 -> 3 -> 4", merge2.String())
 }

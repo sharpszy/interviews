@@ -3,6 +3,8 @@ package middle
 import (
 	"goimpl/common"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 // Q92: 反转链表 II
@@ -38,10 +40,10 @@ func Test_reverseBetween(t *testing.T) {
 	list := common.NewListNode([]int{1, 2, 3, 4, 5, 6, 7})
 	left, right := 2, 4
 	r := reverseBetween(list, left, right)
-	r.Print()
+	assert.Equal(t, "1 -> 4 -> 3 -> 2 -> 5 -> 6 -> 7", r.String())
 
 	list = common.NewListNode([]int{1, 2, 3, 4, 5, 6, 7})
 	left, right = 6, 7
 	r = reverseBetween(list, left, right)
-	r.Print()
+	assert.Equal(t, "1 -> 2 -> 3 -> 4 -> 5 -> 7 -> 6", r.String())
 }

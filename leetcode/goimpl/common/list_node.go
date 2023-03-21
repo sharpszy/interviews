@@ -1,6 +1,9 @@
 package common
 
-import "fmt"
+import (
+	"bytes"
+	"fmt"
+)
 
 // Definition for singly-linked list.
 type ListNode struct {
@@ -23,17 +26,19 @@ func NewListNode(nums []int) *ListNode {
 	return r.Next
 }
 
-func (l *ListNode) Print() {
+func (l *ListNode) String() string {
 	if l == nil {
-		return
+		return "Nil"
 	}
+
+	var buf bytes.Buffer
 	h := l
 	for h != nil {
-		fmt.Printf("%v", h.Val)
+		buf.WriteString(fmt.Sprintf("%v", h.Val))
 		if h.Next != nil {
-			fmt.Print(" -> ")
+			buf.WriteString(" -> ")
 		}
 		h = h.Next
 	}
-	fmt.Println()
+	return buf.String()
 }

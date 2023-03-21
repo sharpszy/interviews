@@ -3,6 +3,8 @@ package simple
 import (
 	"goimpl/common"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 // Q206: 反转链表
@@ -29,5 +31,5 @@ func reverseList(head *common.ListNode) *common.ListNode {
 func Test_reverseList(t *testing.T) {
 	list := common.NewListNode([]int{1, 2, 3, 4, 5, 6, 7})
 	r := reverseList(list)
-	r.Print()
+	assert.Equal(t, "7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1", r.String())
 }

@@ -3,6 +3,8 @@ package middle
 import (
 	"goimpl/common"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 // Q2: 两数相加
@@ -62,10 +64,10 @@ func Test_addTwoNumbers(t *testing.T) {
 		l2 = common.NewListNode([]int{4, 5, 8, 3})
 	)
 	l := addTwoNumbers(l1, l2)
-	l.Print()
+	assert.Equal(t, "5 -> 7 -> 1 -> 4", l.String())
 
 	l1 = common.NewListNode([]int{9, 9, 9, 9, 9, 9, 9})
 	l2 = common.NewListNode([]int{9, 9, 9, 9})
 	l = addTwoNumbers(l1, l2)
-	l.Print()
+	assert.Equal(t, "8 -> 9 -> 9 -> 9 -> 0 -> 0 -> 0 -> 1", l.String())
 }
