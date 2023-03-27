@@ -1,4 +1,4 @@
-# goroutine 泄漏
+# Golang - goroutine 泄漏
 > 当创建一个新的 Goroutine 时，计算机会在堆中分配内存，并在执行完成后释放它们。Goroutine 泄漏是当 Goroutine 未终止并在应用程序的生命周期内一直挂在后台时发生的内存泄漏。例如（[您应该避免的常见 Goroutine 泄漏](https://betterprogramming.pub/common-goroutine-leaks-that-you-should-avoid-fe12d12d6ee)）
 >
 
