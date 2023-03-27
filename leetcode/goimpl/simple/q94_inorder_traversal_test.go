@@ -7,33 +7,48 @@ import (
 )
 
 func inorderTraversal(root *common.TreeNode) (nums []int) {
-	inorder(root, nums)
+	inorder(root, &nums)
 	return nums
 }
 
-func inorder(root *common.TreeNode, nums []int) []int {
+func inorder(root *common.TreeNode, nums *[]int) []int {
 	if root == nil {
-		return nums
+		return *nums
 	}
 
 	inorder(root.Left, nums)
-	nums = append(nums, root.Val)
+	*nums = append(*nums, root.Val)
 	inorder(root.Right, nums)
 
-	return nums
+	return *nums
 }
 
 func Test_inorderTraversal(t *testing.T) {
 	tree := &common.TreeNode{
-		Val: 1,
+		Val: 6,
 		Left: &common.TreeNode{
-			Val: 2,
+			Val: 9,
 			Left: &common.TreeNode{
-				Val: 4,
+				Val: 10,
+			},
+			Right: &common.TreeNode{
+				Val: 7,
 			},
 		},
 		Right: &common.TreeNode{
-			Val: 3,
+			Val: 4,
+			Left: &common.TreeNode{
+				Val: 5,
+			},
+			Right: &common.TreeNode{
+				Val: 2,
+				Left: &common.TreeNode{
+					Val: 3,
+				},
+				Right: &common.TreeNode{
+					Val: 1,
+				},
+			},
 		},
 	}
 
