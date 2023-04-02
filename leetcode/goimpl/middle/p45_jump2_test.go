@@ -41,10 +41,36 @@ func jump2(nums []int) int {
 	return ans
 }
 
+// 在题目基础上返回下标
+func jump2GetIndexs(nums []int) []int {
+	var (
+		ans         []int
+		lastIdx     = 0
+		maxPos, end = 0, 0
+	)
+	for i := 0; i < len(nums)-1; i++ {
+		if nums[i]+i > maxPos { // 严格大于上一次的最大位置，才更新下表值
+			lastIdx = i
+			maxPos = nums[i] + i
+		}
+		if end == i {
+			end = maxPos
+			ans = append(ans, lastIdx)
+		}
+	}
+	return ans
+}
+
 func Test_jump2(t *testing.T) {
 	nums := []int{2, 3, 1, 1, 4}
 	assert.Equal(t, 2, jump2(nums))
+	assert.Equal(t, []int{0, 1}, jump2GetIndexs(nums))
 
 	nums = []int{2, 3, 0, 1, 4}
 	assert.Equal(t, 2, jump2(nums))
+	assert.Equal(t, []int{0, 1}, jump2GetIndexs(nums))
+
+	nums = []int{3, 2, 0, 1, 2, 1, 2, 5}
+	assert.Equal(t, 4, jump2(nums))
+	assert.Equal(t, []int{0, 3, 4, 6}, jump2GetIndexs(nums))
 }
