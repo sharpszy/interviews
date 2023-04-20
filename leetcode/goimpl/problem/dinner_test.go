@@ -98,8 +98,6 @@ func getNextG3(total int, n int, split map[int]bool, r *rand.Rand) (p1Pos, p2Pos
 		}
 		p3Pos = r.Intn(total)
 	}
-	split[p1Pos] = true
-	split[p2Pos] = true
 	split[p3Pos] = true
 	return
 }
