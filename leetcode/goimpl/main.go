@@ -164,15 +164,15 @@ func main() {
 		{"爱民", "爱军", "爱国", "爱辉", "爱月"},
 	}
 
-	groups = [][]string{
-		{"小名", "小红", "小马", "小丽"},
-		{"大壮", "大力", "大1", "大2"},
-		{"阿花", "阿朵", "阿蓝", "阿紫"},
-		{"A", "B", "C", "D"},
-		{"一", "二", "三", "四"},
-		{"建国", "建军", "建民", "建超"},
-		{"爱民", "爱军", "爱国", "爱辉"},
-	}
+	// groups = [][]string{
+	// 	{"小名", "小红", "小马", "小丽"},
+	// 	{"大壮", "大力", "大1", "大2"},
+	// 	{"阿花", "阿朵", "阿蓝", "阿紫"},
+	// 	{"A", "B", "C", "D"},
+	// 	{"一", "二", "三", "四"},
+	// 	{"建国", "建军", "建民", "建超"},
+	// 	{"爱民", "爱军", "爱国", "爱辉"},
+	// }
 
 	r := make(chan struct {
 		gs [][]string
@@ -185,12 +185,6 @@ loop:
 	for {
 		select {
 		case <-ticker.C:
-			continue
-		case d := <-r:
-			fmt.Println("g2Count:", d.g2, " g3Count:", d.g3)
-			fmt.Println(d.gs)
-			break loop
-		default:
 			go func() {
 				gs, g2, g3 := dinnerGroups(groups)
 				r <- struct {
@@ -201,6 +195,10 @@ loop:
 					gs, g2, g3,
 				}
 			}()
+		case d := <-r:
+			fmt.Println("g2Count:", d.g2, " g3Count:", d.g3)
+			fmt.Println(d.gs)
+			break loop
 		}
 	}
 }

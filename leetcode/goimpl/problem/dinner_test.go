@@ -175,12 +175,6 @@ loop:
 	for {
 		select {
 		case <-ticker.C:
-			continue
-		case d := <-r:
-			fmt.Println("g2Count:", d.g2, " g3Count:", d.g3)
-			fmt.Println(d.gs)
-			break loop
-		default:
 			go func() {
 				gs, g2, g3 := dinnerGroups(groups)
 				r <- struct {
@@ -191,6 +185,10 @@ loop:
 					gs, g2, g3,
 				}
 			}()
+		case d := <-r:
+			fmt.Println("g2Count:", d.g2, " g3Count:", d.g3)
+			fmt.Println(d.gs)
+			break loop
 		}
 	}
 }
