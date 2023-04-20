@@ -1,8 +1,9 @@
-package main
+package problem
 
 import (
 	"fmt"
 	"math/rand"
+	"testing"
 	"time"
 )
 
@@ -154,9 +155,8 @@ func computeGroupCount(total int, r *rand.Rand) (g2Count, g3Count int) {
 	return
 }
 
-func main() {
-	var groups [][]string
-	groups = [][]string{
+func Test_dinnerGroups(t *testing.T) {
+	groups := [][]string{
 		{"小名", "小红", "小马", "小丽", "小强"},
 		{"大壮", "大力", "大1", "大2", "大3"},
 		{"阿花", "阿朵", "阿蓝", "阿紫", "阿红"},
@@ -164,16 +164,6 @@ func main() {
 		{"一", "二", "三", "四", "五"},
 		{"建国", "建军", "建民", "建超", "建跃"},
 		{"爱民", "爱军", "爱国", "爱辉", "爱月"},
-	}
-
-	groups = [][]string{
-		{"小名", "小红", "小马", "小丽"},
-		{"大壮", "大力", "大1", "大2"},
-		{"阿花", "阿朵", "阿蓝", "阿紫"},
-		{"A", "B", "C", "D"},
-		{"一", "二", "三", "四"},
-		{"建国", "建军", "建民", "建超"},
-		{"爱民", "爱军", "爱国", "爱辉"},
 	}
 
 	r := make(chan struct {
