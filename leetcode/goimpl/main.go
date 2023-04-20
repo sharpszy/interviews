@@ -180,7 +180,7 @@ func main() {
 		g3 int
 	})
 
-	ticker := time.NewTicker(3 * time.Millisecond)
+	ticker := time.NewTicker(1 * time.Millisecond)
 loop:
 	for {
 		select {
