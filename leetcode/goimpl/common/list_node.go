@@ -15,6 +15,7 @@ func NewListNode(nums []int) *ListNode {
 	if len(nums) == 0 {
 		return nil
 	}
+
 	var (
 		r = &ListNode{}
 		p = r
